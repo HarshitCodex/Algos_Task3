@@ -4,24 +4,31 @@ int main()
 {
     int n,m;
     cin>>n>>m;
-    priority_queue<long long,vector<long long>,greater<long long> > q;
-    for(int i=0;i<m;i++)
+    priority_queue<long long,vector<long long>,greater<long long> > qmax;
+    priority_queue<long long,vector<long long> > qmin;
+    vector<long long> vec;
+    for(int i=0;i<n;i++)
     {
         long long a;
         cin>>a;
-        q.push(a);
+        vec.push_back(a);
     }
-    int sze=m;
-    while(sze>n)
+    sort(vec.begin(),vec.end());
+    for(int i=n-1;i>n-1-m;i--)
     {
-        sze--;
-        long long a,b;
-        a=q.top();
-        q.pop();
-        b=q.top();
-        q.pop();
-        //cout<<"a = "<<a<<" b = "<<b<<endl;
-        q.push(a+b);
+    	qmin.push(vec[i]);
     }
-    cout<<q.top()<<endl;
+    for(int i=0;i<n-m;i++)
+    {
+    	qmax.push(vec[i]);
+    }
+    while(!(qmax.empty())
+    {
+    	long long a=qmax.top();
+    	long long b=qmin.top();
+    	qmin.pop();
+    	qmax.pop();
+    	qmin.push(a+b);
+    }
+    cout<<qmin.top()<<endl;
 }
